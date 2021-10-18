@@ -13,7 +13,6 @@
     </div>
     <h1>{{ title }}</h1>
     <slot></slot>
-    {{loading}}
   </div>
 </template>
 
@@ -34,8 +33,10 @@ export default {
     },
   },
   watch: {
-    disabled() {
-      this.checked = false;
+    loading(newVal, oldVal) {
+      if (!newVal && oldVal) {
+        this.checked = false;
+      }
     },
   },
   mounted() {

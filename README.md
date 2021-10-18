@@ -1,24 +1,18 @@
-# user-posts
+# 🗺️ Mapa de acción estatal (Challenge)
 
-## Project setup
-```
+## Configuración para compilación 
+``` bash
+# Instalación de dependencias
 npm install
-```
 
-### Compiles and hot-reloads for development
-```
+# Para compilación y hot-reload
 npm run serve
-```
 
-### Compiles and minifies for production
-```
-npm run build
-```
+# Para compilación en producción
+npm run build # Luego, encender servidor http y ver el html
 
-### Lints and fixes files
-```
+# Para correr los linterns
 npm run lint
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+*Autor: Santiago de Nicolás*
