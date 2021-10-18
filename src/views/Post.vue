@@ -8,12 +8,17 @@
     <div class="breadcrumb">
       <Navbar :back="true" title="Ludwig van Beethoven" />
       <div class="button_wrapper">
-        <Button
-          @click="changeState('enable')"
-          class="enabled">Habilitar</Button>
-        <Button
-          @click="changeState('disable')"
-          class="disabled">Deshabilitar</Button>
+        <v-btn
+          :loading="loadingbtn"
+          elevation="0"
+          rounded
+          class="primary"
+          @click="changeState('enable')">Habilitar</v-btn>
+        <v-btn
+          :loading="loadingbtn"
+          elevation="0"
+          rounded
+          @click="changeState('disable')">Deshabilitar</v-btn>
       </div>
     </div>
     <div class="post_wrapper">
@@ -33,29 +38,38 @@
 import axios from 'axios';
 import Navbar from '../components/Navbar.vue';
 import Pill from '../components/Pill.vue';
-import Button from '../components/Button.vue';
 
 export default {
   name: 'Posts',
   components: {
     Navbar,
     Pill,
-    Button,
   },
   data: () => ({
     user: null,
     posts: [],
+    loadingbtn: false,
   }),
   methods: {
-    changeState(state = 'diable') {
-      this.posts.forEach((post) => {
+    async changeState(state = 'diable') {
+      this.loadingbtn = true;
+      // eslint-disable-next-line no-restricted-syntax
+      for (const post of this.posts) {
         if (post.checked) {
+          // eslint-disable-next-line no-await-in-loop
+          const res = await axios.put(
+            `https://jsonplaceholder.typicode.com/posts/${post.id}`,
+            { disabled: state === 'disable' },
+          );
           // eslint-disable-next-line no-param-reassign
           post.disabled = state === 'disable';
+
+          console.log(res);
         }
         // eslint-disable-next-line no-param-reassign
         post.checked = false;
-      });
+      }
+      this.loadingbtn = false;
     },
   },
   async mounted() {
