@@ -32,6 +32,11 @@ export default {
       this.$emit('input', this.checked);
     },
   },
+  watch: {
+    disabled() {
+      this.checked = false;
+    },
+  },
   mounted() {
     this.checked = this.value;
   },
