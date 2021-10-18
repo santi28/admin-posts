@@ -25,6 +25,7 @@
       <Pill
         v-for="post in posts"
         v-model="post.checked"
+        :loading="loadingbtn"
         :disabled="post.disabled"
         :key="post.id"
         :title="post.title">

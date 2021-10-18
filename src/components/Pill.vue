@@ -6,13 +6,14 @@
         :class="(disabled) ? 'disabled' : 'enabled'">
         {{ (disabled) ? 'Deshabilitado' : 'Habilitado' }}
       </div>
-      <input type="checkbox"
-        value="1"
-        :checked="checked"
+      <v-checkbox
+        :disabled="loading"
+        v-model="checked"
         @change="change"/>
     </div>
     <h1>{{ title }}</h1>
     <slot></slot>
+    {{loading}}
   </div>
 </template>
 
@@ -21,6 +22,7 @@ export default {
   props: {
     title: String,
     disabled: Boolean,
+    loading: Boolean,
     value: Boolean,
   },
   data: () => ({
@@ -28,7 +30,6 @@ export default {
   }),
   methods: {
     change() {
-      this.checked = !this.checked;
       this.$emit('input', this.checked);
     },
   },
