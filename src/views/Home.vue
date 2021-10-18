@@ -106,7 +106,7 @@ export default {
       this.tableData[i].email = this.modify.email || this.tableData[i].email;
       this.tableData[i].phone = this.modify.phone || this.tableData[i].phone;
       this.tableData[i].website = this.modify.website || this.tableData[i].website;
-      this.tableData[i].company.name = this.modify.company.name;
+      this.tableData[i].company.name = this.modify.company.name || this.tableData[i].company.name;
 
       const res = await axios.put(`https://jsonplaceholder.typicode.com/users/${id}`, this.modify);
       console.log(res);
